@@ -1,0 +1,35 @@
+[
+  {
+    "codigo": 457,
+    "titulo": "The Arrival",
+    "duracao": 116,
+    "atores": [
+      "Amy Adams",
+      "Jeremy Renner"
+    ],
+    "anoDeLancamento": 2016,
+    "emCartaz": true
+  },
+  {
+    "codigo": 324,
+    "titulo": "The Grand Budapest Hotel",
+    "duracao": 100,
+    "atores": [
+      "Ralph Fiennes",
+      "Tony Revolori"
+    ],
+    "anoDeLancamento": 2014,
+    "emCartaz": false
+  },
+  {
+    "codigo": 784,
+    "titulo": "The Lord of the Rings: The Return of the King",
+    "duracao": 210,
+    "atores": [
+      "Elijah Wood",
+      "Viggo Mortensen"
+    ],
+    "anoDeLancamento": 2003,
+    "emCartaz": false
+  }
+]
