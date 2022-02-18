@@ -27,15 +27,25 @@ function mostrarFilme(filmeObject) {
 
 }
 
-function mensagemParaUsuario(status) {
+function mensagemParaUsuario(statusCode) {
 
-  if (status) {
+  switch(statusCode) {
 
-    console.log("\nOperação realizada com sucesso.")
+    case 1:
 
-  } else {
+      console.log("\nOperação realizada com sucesso.")
 
-    console.log("\nErro durante a execução do programa.")
+      break;
+
+    case 2:
+
+      console.log("\nErro durante a execução do programa.")
+
+      break;
+
+    default:
+
+      console.log("\nMensagem padrão.")
 
   }
 
@@ -45,7 +55,7 @@ function adicionarFilme(novoFilme) {
 
   catalogo.push(novoFilme)
 
-  mensagemParaUsuario(true)
+  mensagemParaUsuario(1)
 
 }
 
@@ -55,7 +65,7 @@ function buscarFilme(codigo) {
 
   if (!filmeEncontrado) {
 
-    return mensagemParaUsuario(false)
+    return mensagemParaUsuario(2)
 
   } else {
 
@@ -71,7 +81,7 @@ function alterarStatusEmCartaz(codigo) {
 
   let indexDoFilme = catalogo.indexOf(filmeEncontrado)
 
-  filmeEncontrado === undefined ? mensagemParaUsuario(false) : (catalogo[indexDoFilme].emCartaz = !catalogo[indexDoFilme].emCartaz, mensagemParaUsuario(true))
+  filmeEncontrado === undefined ? mensagemParaUsuario(2) : (catalogo[indexDoFilme].emCartaz = !catalogo[indexDoFilme].emCartaz, mensagemParaUsuario(1))
 
 }
 
