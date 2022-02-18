@@ -17,7 +17,7 @@ function mostrarFilme(filmeObject) {
 
   for (let prop in filmeObject) {
 
-    let novaLinhaDeMensagem = "\n" + prop + ": " + filmeObject[prop]
+    let novaLinhaDeMensagem = `\n${prop}: ${filmeObject[prop]}`
 
     message = message + novaLinhaDeMensagem
 
@@ -63,15 +63,9 @@ function buscarFilme(codigo) {
 
   let filmeEncontrado = catalogo.find((filme) => filme.codigo === codigo)
 
-  if (!filmeEncontrado) {
-
-    return mensagemParaUsuario(2)
-
-  } else {
-
-    return mostrarFilme(filmeEncontrado)
-
-  }
+  if (!filmeEncontrado) return mensagemParaUsuario(2)
+  
+  return mostrarFilme(filmeEncontrado)
 
 }
 
@@ -81,69 +75,33 @@ function alterarStatusEmCartaz(codigo) {
 
   let indexDoFilme = catalogo.indexOf(filmeEncontrado)
 
-  filmeEncontrado === undefined ? mensagemParaUsuario(2) : (catalogo[indexDoFilme].emCartaz = !catalogo[indexDoFilme].emCartaz, mensagemParaUsuario(1))
+  if (!filmeEncontrado) return mensagemParaUsuario(2)
+  
+  catalogo[indexDoFilme].emCartaz = !catalogo[indexDoFilme].emCartaz
+    
+  return mensagemParaUsuario(1)
 
 }
 
 function listarTodosOsFilmes() {
 
-  catalogo.forEach(
-    
-    function imprimir(filme) {
-    
-      mostrarFilme(filme)
-
-    }
-  
-  )
+  catalogo.forEach((filme) => mostrarFilme(filme))
 
 }
 
 function listarFilmesEmCartaz() {
 
-  let filmesEmCartaz = catalogo.filter(
+  let filmesEmCartaz = catalogo.filter((filme) => filme.emCartaz)
 
-    function testeEmCartaz(filme) {
-
-      return filme.emCartaz
-
-    }
-
-  )
-
-  filmesEmCartaz.forEach(
-    
-    function imprimir(filme) {
-    
-      mostrarFilme(filme)
-
-    }
-  
-  )
+  filmesEmCartaz.forEach((filme) => mostrarFilme(filme))
  
 }
 
 function listarFilmesDeLongaDuracao() {
 
-  let filmesDeLongaDuracao = catalogo.filter(
+  let filmesDeLongaDuracao = catalogo.filter((filme) => filme.duracao >= 120)
 
-    function testeLongaDuracao(filme) {
-
-      return filme.duracao >= 120
-
-    }
-
-  )
-
-  filmesDeLongaDuracao.forEach(
-    
-    function imprimir(filme) {
-    
-      mostrarFilme(filme)
-
-    }
-  
-  )
+  filmesDeLongaDuracao.forEach((filme) => mostrarFilme(filme))
 
 }
 
