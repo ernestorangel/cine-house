@@ -11,25 +11,77 @@ let novoFilme = {
   emCartaz: false
 }
 
-function mostrarFilme(filmeObject) {
+function formatarPalavra(palavra) {
 
-  let message = ""
+  let listaDeIndicesDasMaiusculas = [0]
 
-  for (let prop in filmeObject) {
+  for (let letra in palavra) {
 
-    let novaLinhaDeMensagem = `\n${prop}: ${filmeObject[prop]}`
+    if (palavra[letra] == palavra[letra].toUpperCase()) {
 
-    message = message + novaLinhaDeMensagem
+      listaDeIndicesDasMaiusculas.push(letra)
+
+    } 
 
   }
 
-  return console.log(message)
+  let palavraFormatada
+
+  if (listaDeIndicesDasMaiusculas.length > 1) {
+
+    palavraFormatada = []
+
+    for (let i = 0; i <= listaDeIndicesDasMaiusculas.length; i++) {
+
+      if (i == 0) {
+
+        continue
+
+      } else {
+
+        palavraIsolada = palavra.slice(listaDeIndicesDasMaiusculas[i - 1], listaDeIndicesDasMaiusculas[i])
+
+      }
+
+      palavraFormatada.push(palavraIsolada)
+
+    }
+
+    palavraFormatada = palavraFormatada.join(" ")
+
+  } else {
+
+    palavraFormatada = palavra
+
+  }
+
+  return palavraFormatada.charAt(0).toUpperCase() + palavraFormatada.slice(1)
 
 }
 
-function mensagemParaUsuario(statusCode) {
+function mostrarFilme(objetoFilme) {
 
-  switch(statusCode) {
+  let mensagem = ""
+
+  for (let propriedadeDoFilme in objetoFilme) {
+
+    nomeDaPropriedade = formatarPalavra(propriedadeDoFilme)
+
+    valorDaPropriedade = objetoFilme[propriedadeDoFilme]
+
+    let novaLinhaDaMensagem = `\n${nomeDaPropriedade}: ${valorDaPropriedade}`
+
+    mensagem = mensagem + novaLinhaDaMensagem
+
+  }
+
+  return console.log(mensagem)
+
+}
+
+function mensagemParaUsuario(codigoDeStatus) {
+
+  switch(codigoDeStatus) {
 
     case 1:
 
@@ -59,9 +111,9 @@ function adicionarFilme(novoFilme) {
 
 }
 
-function buscarFilme(codigo) {
+function buscarFilme(codigoDoFilmeProcurado) {
 
-  let filmeEncontrado = catalogo.find((filme) => filme.codigo === codigo)
+  let filmeEncontrado = catalogo.find((filme) => filme.codigo === codigoDoFilmeProcurado)
 
   if (!filmeEncontrado) return mensagemParaUsuario(2)
   
