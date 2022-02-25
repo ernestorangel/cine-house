@@ -15,47 +15,47 @@ function formatarPalavra(palavra) {
 
   let listaDeIndicesDasMaiusculas = [0]
 
-  for (let letra in palavra) {
+  for (let indiceDaLetra in palavra) {
 
-    if (palavra[letra] == palavra[letra].toUpperCase()) {
+    if (palavra[indiceDaLetra] == palavra[indiceDaLetra].toUpperCase()) {
 
-      listaDeIndicesDasMaiusculas.push(letra)
+      listaDeIndicesDasMaiusculas.push(indiceDaLetra)
 
     } 
 
   }
 
-  let palavraFormatada
+  let listaDePalavras
 
   if (listaDeIndicesDasMaiusculas.length > 1) {
 
-    palavraFormatada = []
+    listaDePalavras = []
 
     for (let i = 0; i <= listaDeIndicesDasMaiusculas.length; i++) {
 
-      if (i == 0) {
-
-        continue
-
-      } else {
+      if (i != 0) {
 
         palavraIsolada = palavra.slice(listaDeIndicesDasMaiusculas[i - 1], listaDeIndicesDasMaiusculas[i])
 
+      } else {
+
+        continue
+        
       }
 
-      palavraFormatada.push(palavraIsolada)
+      listaDePalavras.push(palavraIsolada)
 
     }
 
-    palavraFormatada = palavraFormatada.join(" ")
+    listaDePalavras = listaDePalavras.join(" ")
 
   } else {
 
-    palavraFormatada = palavra
+    listaDePalavras = palavra
 
   }
 
-  return palavraFormatada.charAt(0).toUpperCase() + palavraFormatada.slice(1)
+  return listaDePalavras.charAt(0).toUpperCase() + listaDePalavras.slice(1)
 
 }
 
@@ -71,7 +71,7 @@ function mostrarFilme(objetoFilme) {
 
     let novaLinhaDaMensagem = `\n${nomeDaPropriedade}: ${valorDaPropriedade}`
 
-    mensagem = mensagem + novaLinhaDaMensagem
+    mensagem += novaLinhaDaMensagem
 
   }
 
